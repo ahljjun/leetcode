@@ -7,34 +7,21 @@ using namespace std;
 
 
 string convert(string s, int numRows){
-    return "" ;
-}
+    if (numRows == 1)
+        return s;
 
-
-int main()
-{
-    int numRows = 3;
-    vector<std::shared_ptr<vector<char>>> strVec(numRows);
-    for(int i=0; i< numRows; i++){
-        strVec[i]= std::make_shared<vector<char>>(); 
-    }
-
-    string s = "PAYPALISHIRING";
-    
+    vector<vector<char>> strVec(numRows, vector<char>());
     auto slot = 0;
     bool increase = true;
-    auto j = 0;
     for(int i=0; i < s.size(); i++){
-        j = slot;
-        if ( --j == -1 ){
+        if ( slot == 0 ){
            increase = true; 
         }
-        j = slot;
-        if (++j == numRows){
+        if (slot == numRows-1){
             increase = false;
         }
-        cout << "slot "<<slot<<": "<<s[i]<<endl;
-        strVec[slot]->push_back(s[i]);
+
+        strVec[slot].push_back(s[i]);
 
         if ( increase )
             slot++;
@@ -45,33 +32,21 @@ int main()
     string retStr;
     for(int i=0;i< numRows; i++)
     {
-        retStr.append(strVec[i]->begin(), strVec[i]->end());
+        //retStr.append(strVec[i]->begin(), strVec[i]->end());
+        retStr.append(strVec[i].begin(), strVec[i].end());
     }
 
+    return retStr;
+}
 
-    cout << retStr<<endl;
 
+int main()
+{
+    string s = "abcdefgh";
 
-
-        
-        /*
-        if ((i / numRows) % 2)
-            direction = -1;
-        else
-            direction = 1;
-
-        slot = (i+1+direction * (numRows-1)) % (numRows) ;
-        */
-
-    /*
-    for(auto charVec : strVec){
-       for(auto c : *charVec)
-          cout<< c<<","; 
-
-       cout<<"\n";
-    }
-    */
-
+    cout<< convert(s, 1)<<endl;
+    cout<< convert(s,2)<<endl;
+    cout<< convert(s,3)<<endl;
 
     return 0;
 }
