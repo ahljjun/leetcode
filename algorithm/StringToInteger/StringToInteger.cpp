@@ -32,16 +32,29 @@ INT_MAX (2147483647) or INT_MIN (-2147483648) is returned.
 #include <iostream>
 #include <string>
 #include <cctype>
+#include <climits>
 using namespace std;
+
 
 int myAtoi(string str) 
 {
     int wbegin=0;
     int nLen = str.size();
+    int sign = 0;
 
     while(wbegin < nLen &&  str[wbegin]==' ')
         wbegin++;
-    
+
+    if(str[wbegin] == '-')
+        sign = -1;
+    else if (str[wbegin] == '+')
+        sign = 1;
+
+    if ( sign )
+        wbegin++;
+    else
+        sign = 1;
+
     int wend = wbegin ;
     while(wend < nLen && isdigit(str[wend]))
         wend++;
@@ -49,11 +62,13 @@ int myAtoi(string str)
     if ( wbegin == nLen )
         return 0;
 
-    int result  = 0;
+    long long result  = 0;
     for(int i=wbegin; i<wend; i++){
-        result = result * 10 + (str[i] - '0');
+        result = result * 10 + sign*(str[i] - '0');
+        if ( result > INT_MAX  || result < INT_MIN )
+           return 0;
     }
-
+    
     return result;
 }
 
