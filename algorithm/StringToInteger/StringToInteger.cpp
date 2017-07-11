@@ -65,8 +65,11 @@ int myAtoi(string str)
     long long result  = 0;
     for(int i=wbegin; i<wend; i++){
         result = result * 10 + sign*(str[i] - '0');
-        if ( result > INT_MAX  || result < INT_MIN )
-           return 0;
+        if ( result > INT_MAX ) 
+           return INT_MAX;
+
+        if ( result < INT_MIN )
+           return INT_MIN;
     }
     
     return result;
