@@ -10,34 +10,47 @@ amongst an array of strings.
 #include <algorithm>
 using namespace std;
 
+/*
+ * Horizontal scanning
+ *
+ * */
 string longestCommonPrefix(vector<string>& strs) 
 {
         int size = strs.size();
         if ( size ==0 )
             return "" ;
 
-        int i=0;
-        int j=0;
-        int minLen = strs[0].size();
-        for(i=1; i < strs.size(); i++) {
-            minLen =min(minLen, (int)strs[i].size());
-        }
-
-        while(j<minLen){
-            for(i=0; i < size; i++) {
-                if ( strs[i][j] != strs[i][0] )
-                    return strs[0].substr(0,j);
+        if ( size == 1 )
+           return strs[0];
+        
+        int prefixLen = 0;
+        while(1){
+            for(int i=1; i < size; i++) {
+                if ( strs[i].size() < prefixLen ||  strs[i][prefixLen] != strs[0][prefixLen] )
+                        return strs[0].substr(0, prefixLen);
             }
-            j++;
+            prefixLen++;
         }
-
-        return "";
 }
+
+
+//TODO
+//1. THe binary search way
+string longestCommonPrefix_1(vector<string>& strs) 
+{
+}
+
+//TODO
+//2. The Divide and Conquer
+string longestCommonPrefix_2(vector<string>& strs) 
+{
+}
+
 
 int main()
 {
-    string a = "abc";
-    string b="abd";
+    string a = "c";
+    string b="c";
     vector<string> vecStr={a,b};
     
     cout << longestCommonPrefix(vecStr) <<endl;
