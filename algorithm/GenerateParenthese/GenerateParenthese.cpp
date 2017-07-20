@@ -40,6 +40,7 @@ vector<string> generateParenthesis(int n) {
  * and http://blog.csdn.net/peerlessbloom/article/details/39321303
  * and http://mathforum.org/mathimages/index.php/Catalan_Numbers
  * https://discuss.leetcode.com/topic/39071/elegant-recursive-solution-for-generating-valid-parentheses
+ * and https://stackoverflow.com/questions/23413881/understanding-function-to-generate-parentheses
 vector<string> generateParenthesis_DP(int n) {
    set<string> ret;
    if ( n == 1 )
