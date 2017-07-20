@@ -38,6 +38,8 @@ vector<string> generateParenthesis(int n) {
 /** Wrong Algorithm here
  * right DP, see https://discuss.leetcode.com/topic/18523/a-simplified-c-dp-solution-4ms-8-lines
  * and http://blog.csdn.net/peerlessbloom/article/details/39321303
+ * and http://mathforum.org/mathimages/index.php/Catalan_Numbers
+ * https://discuss.leetcode.com/topic/39071/elegant-recursive-solution-for-generating-valid-parentheses
 vector<string> generateParenthesis_DP(int n) {
    set<string> ret;
    if ( n == 1 )
