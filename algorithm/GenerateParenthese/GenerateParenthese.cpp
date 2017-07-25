@@ -64,6 +64,26 @@ vector<string> generateParenthesis_DP(int n) {
 }
 */
 
+vector<string> generateParenthesis_recursion(int n) {
+    if ( n== 0 )
+       return {""};
+    if ( n == 1 )
+       return {"()"};
+    vector<string> ret;
+    for(int i=0; i<n; i++){
+        vector<string> A=generateParenthesis(i);
+        vector<string> B=generateParenthesis(n-1-i);
+        for(auto a : A){
+          for(auto b : B){
+               ret.push_back("(" + a + ")" + b);
+           }
+       }
+    }
+     
+    return ret;
+}
+
+
 
 void dumpResult(const vector<string>& ret)
 {
@@ -76,7 +96,7 @@ void dumpResult(const vector<string>& ret)
 int main()
 {
     int n = 3;
-    vector<string> result = generateParenthesis_DP(n);
+    vector<string> result = generateParenthesis_recursion(n);
     dumpResult(result);
 
 }
