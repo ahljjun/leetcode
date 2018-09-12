@@ -3,6 +3,7 @@
 #define __THREAD_POOL_H
 
 #include <vector>
+#include <queue>
 #include <thread>
 #include <mutex>
 #include <condition_variable>
@@ -41,7 +42,7 @@ ThreadPool::ThreadPool(int threadNum, int qSize)
 
 ThreadPool::start() 
 {
-    bRunning = true; // this need to be only_once. consider singlton.
+    bRunning = true; // if this need to be only_once. consider singlton.
     for(int i=0; i<thrNum; ++i) {
         thrVec.push_back(std::unique_ptr<std::thread>(new std::thread(std::bind(ThreadPool::threadFunc, this)));
     }
